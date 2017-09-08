@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Fiap2.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,9 @@ namespace Fiap2.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+        //    services.AddScoped<Core.IPhotoService, PhotoService>();
+        //    services.AddSingleton<Core.IPhotoService, PhotoService>();
+            services.AddTransient<Core.IPhotoService, PhotoService>();
             services.AddMvc();
         }
 

@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Fiap2.Core
 {
-    public class PhotoService
+    public class PhotoService : IPhotoService
     {
         public List<Photo> List()
         {
