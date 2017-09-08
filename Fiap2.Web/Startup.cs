@@ -22,10 +22,11 @@ namespace Fiap2.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-        //    services.AddScoped<Core.IPhotoService, PhotoService>();
-        //    services.AddSingleton<Core.IPhotoService, PhotoService>();
+            //    services.AddScoped<Core.IPhotoService, PhotoService>();
+            //    services.AddSingleton<Core.IPhotoService, PhotoService>();
             services.AddTransient<Core.IPhotoService, PhotoService>();
             services.AddMvc();
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +43,7 @@ namespace Fiap2.Web
             }
 
             app.UseStaticFiles();
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
