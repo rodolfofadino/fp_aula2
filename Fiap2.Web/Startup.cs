@@ -28,6 +28,7 @@ namespace Fiap2.Web
             services.AddTransient<Core.IPhotoService, PhotoService>();
             services.AddMvc();
             services.AddMemoryCache();
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +56,7 @@ namespace Fiap2.Web
                 });
             }
 
-
+            app.UseResponseCaching();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

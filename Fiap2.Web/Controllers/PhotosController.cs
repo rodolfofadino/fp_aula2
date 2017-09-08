@@ -17,6 +17,8 @@ namespace Fiap2.Web.Controllers
         {
             _photoService = photoService;
         }
+
+        [ResponseCache(Duration = 200)]
         public IActionResult Index()
         {
             //var service = new Fiap2.Core.PhotoService();
