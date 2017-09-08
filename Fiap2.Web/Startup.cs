@@ -39,7 +39,7 @@ namespace Fiap2.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Photos/Error");
             }
 
             app.UseStaticFiles();
@@ -47,8 +47,14 @@ namespace Fiap2.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "list_photos_category",
+                    template: "photos/{category}/{total?}",
+                    defaults:new {controller="Photos",action= "Category"});
+
+                routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Photos}/{action=Index}/{id?}");
+
             });
         }
     }

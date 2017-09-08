@@ -9,11 +9,11 @@ using Fiap2.Web.Models;
 
 namespace Fiap2.Web.Controllers
 {
-    public class HomeController : Controller
+    public class PhotosController : Controller
     {
         private IPhotoService _photoService;
 
-        public HomeController(IPhotoService photoService)
+        public PhotosController(IPhotoService photoService)
         {
             _photoService = photoService;
         }
@@ -21,8 +21,16 @@ namespace Fiap2.Web.Controllers
         {
             //var service = new Fiap2.Core.PhotoService();
             //var photos = service.List();
-        
+
             var photos = _photoService.List();
+
+            return View(photos);
+        }
+
+        public IActionResult Category(string category, int? total)
+        {
+            ViewBag.Category = category;
+            var photos = _photoService.List(category).Take(total ?? 20);
 
             return View(photos);
         }

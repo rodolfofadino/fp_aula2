@@ -1,8 +1,9 @@
-﻿@model List<Fiap2.Core.Photo>
+﻿@model IEnumerable<Fiap2.Core.Photo>
 @{
     ViewData["Title"] = "Home Page";
 }
 
+<h1>@ViewBag.Category</h1>
 
 <ul>
     @foreach (var photo in Model)

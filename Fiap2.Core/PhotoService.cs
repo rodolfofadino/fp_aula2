@@ -47,6 +47,11 @@ namespace Fiap2.Core
             return photoList.Take(20).ToList();
         }
 
+        public List<Photo> List(string category)
+        {
+            //filter category example
+            return this.List();
+        }
     }
 
 }
