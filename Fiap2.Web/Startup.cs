@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Fiap2.Core;
+using Fiap2.Web.Custom;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
@@ -29,6 +31,15 @@ namespace Fiap2.Web
             services.AddMvc();
             services.AddMemoryCache();
             services.AddResponseCaching();
+
+            services.AddSingleton<IMemoryCache>(factory =>
+            {
+                var cache = new MemoryCache(new MemoryCacheOptions());
+                return cache;
+            });
+            services.AddSingleton<ICacheService, MemoryCacheService>();
+            services.AddTransient<CacheAttribute>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +66,8 @@ namespace Fiap2.Web
                     }
                 });
             }
+
+            app.UseMiddleware<CacheMiddleware>();
 
             app.UseResponseCaching();
             app.UseMvc(routes =>

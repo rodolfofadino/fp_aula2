@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Fiap2.Core;
+using Fiap2.Web.Custom;
 using Microsoft.AspNetCore.Mvc;
 using Fiap2.Web.Models;
 
@@ -18,7 +19,8 @@ namespace Fiap2.Web.Controllers
             _photoService = photoService;
         }
 
-        [ResponseCache(Duration = 200)]
+        //[ResponseCache(Duration = 200)]
+        [Cache(Duration = 30)]
         public IActionResult Index()
         {
             //var service = new Fiap2.Core.PhotoService();

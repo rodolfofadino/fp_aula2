@@ -49,7 +49,7 @@ namespace Fiap2.Core
 
         public List<Photo> List(string category)
         {
-            //filter category example
+            //todo:filter category example
             return this.List();
         }
     }
