@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 
 namespace Fiap2.Web
 {
@@ -36,20 +37,31 @@ namespace Fiap2.Web
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+
+                app.UseStaticFiles();
             }
             else
             {
                 app.UseExceptionHandler("/Photos/Error");
+
+                app.UseStaticFiles(new StaticFileOptions()
+                {
+                    OnPrepareResponse = ctx =>
+                    {
+                        const int durationInSeconds = 60 * 60 * 24;
+                        ctx.Context.Response.Headers[HeaderNames.CacheControl] =
+                            $"public,max-age={durationInSeconds}";
+                    }
+                });
             }
 
-            app.UseStaticFiles();
-            
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "list_photos_category",
                     template: "photos/{category}/{total?}",
-                    defaults:new {controller="Photos",action= "Category"});
+                    defaults: new { controller = "Photos", action = "Category" });
 
                 routes.MapRoute(
                     name: "default",
