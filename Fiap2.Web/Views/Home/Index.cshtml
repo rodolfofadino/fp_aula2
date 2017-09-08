@@ -1,0 +1,16 @@
+﻿@model List<Fiap2.Core.Photo>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<ul>
+    @foreach (var photo in Model)
+    {
+        <li>
+            <a href="@photo.Url" target="_blank">
+                <img src="@photo.ThumbnailUrl" alt="@photo.Title" />
+            </a>
+        </li>
+    }
+</ul>
