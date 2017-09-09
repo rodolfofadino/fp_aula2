@@ -1,0 +1,15 @@
+﻿@model Fiap2.Core.Photo
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Add new Photo</h2>
+
+<form asp-controller="Photos"  asp-action="Create" method="post">
+    <input asp-for="Title" />
+    <input asp-for="ThumbnailUrl" />
+    <input asp-for="Url" />
+    <button type="submit">Register</button>
+</form>

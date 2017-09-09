@@ -25,7 +25,6 @@ namespace Fiap2.Web.Controllers
         {
             //var service = new Fiap2.Core.PhotoService();
             //var photos = service.List();
-
             var photos = _photoService.List();
 
             return View(photos);
@@ -38,6 +37,14 @@ namespace Fiap2.Web.Controllers
 
             return View(photos);
         }
+
+
+        public IActionResult Create()
+        {
+            var photo = new Photo();
+            return View(photo);
+        }
+
 
         public IActionResult About()
         {

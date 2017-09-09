@@ -73,6 +73,11 @@ namespace Fiap2.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "create_photos",
+                    template: "photos/create",
+                    defaults: new { controller = "Photos", action = "Create" });
+
+                routes.MapRoute(
                     name: "list_photos_category",
                     template: "photos/{category}/{total?}",
                     defaults: new { controller = "Photos", action = "Category" });
